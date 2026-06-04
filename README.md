@@ -1,0 +1,212 @@
+# Adversarial Defense System
+
+## Overview
+
+Adversarial Defense System is a deep learning security project that demonstrates how adversarial attacks can fool image classification models and how a dual-pass autoencoder defense can recover the original prediction.
+
+The system allows users to upload an image, select a classification model, apply an adversarial attack, and observe the effectiveness of the defense mechanism in real time.
+
+---
+
+## Features
+
+* Upload and classify images through a modern React interface
+* Support for multiple image classifiers:
+
+  * MobileNetV2
+  * WideResNet-28-10
+* Adversarial attack simulation:
+
+  * FGSM (Fast Gradient Sign Method)
+  * PGD (Projected Gradient Descent)
+* Dual-Pass Improved Denoising Autoencoder (IDAE) defense
+* Real-time visualization of:
+
+  * Original image
+  * Adversarial image
+  * Denoised image
+* Confidence score comparison before and after attack/defense
+* FastAPI backend for inference
+* React frontend for interactive visualization
+
+---
+
+## Project Architecture
+
+```text
+User Upload
+      │
+      ▼
+Image Preprocessing
+      │
+      ▼
+Classifier Selection
+(MobileNetV2 / WideResNet)
+      │
+      ▼
+Original Prediction
+      │
+      ▼
+Adversarial Attack
+(FGSM / PGD)
+      │
+      ▼
+Attacked Prediction
+      │
+      ▼
+Dual-Pass IDAE Defense
+      │
+      ▼
+Defended Prediction
+      │
+      ▼
+Results Dashboard
+```
+
+---
+
+## Tech Stack
+
+### Frontend
+
+* React
+* Vite
+* Axios
+* CSS3
+
+### Backend
+
+* FastAPI
+* Python
+* Uvicorn
+
+### Deep Learning
+
+* PyTorch
+* Torchvision
+
+### Models
+
+* MobileNetV2
+* WideResNet-28-10
+* Dual-Pass Autoencoder
+
+### Adversarial Attacks
+
+* FGSM
+* PGD
+
+---
+
+## Example Results
+
+### MobileNetV2 + FGSM
+
+| Stage    | Prediction | Confidence |
+| -------- | ---------- | ---------- |
+| Original | Cat        | 98.31%     |
+| Attacked | Frog       | 96.85%     |
+| Defended | Cat        | 94.95%     |
+
+### WideResNet + PGD
+
+| Stage    | Prediction | Confidence |
+| -------- | ---------- | ---------- |
+| Original | Cat        | 100.00%    |
+| Attacked | Frog       | 99.99%     |
+| Defended | Cat        | 100.00%    |
+
+---
+
+## Installation
+
+### Clone Repository
+
+```bash
+git clone https://github.com/rajath-07/adversarial-defense-system.git
+cd adversarial-defense-system
+```
+
+### Backend Setup
+
+```bash
+cd backend/app
+
+pip install -r requirements.txt
+
+uvicorn main:app --reload
+```
+
+Backend runs at:
+
+```text
+http://localhost:8000
+```
+
+### Frontend Setup
+
+```bash
+cd frontend
+
+npm install
+
+npm run dev
+```
+
+Frontend runs at:
+
+```text
+http://localhost:5173
+```
+
+---
+
+## API Endpoint
+
+### Predict
+
+```http
+POST /predict
+```
+
+Parameters:
+
+* file
+* model_name
+* attack_name
+
+Response:
+
+```json
+{
+  "original_prediction": "dog",
+  "original_confidence": 99.96,
+  "attacked_prediction": "cat",
+  "attacked_confidence": 63.98,
+  "defended_prediction": "dog",
+  "defended_confidence": 99.74
+}
+```
+
+---
+
+## Future Enhancements
+
+* CW (Carlini-Wagner) Attack
+* DeepFool Attack
+* Additional CNN architectures
+* Explainable AI visualizations
+* Model comparison dashboard
+* Cloud deployment
+* User authentication
+* Experiment history tracking
+
+---
+
+## Author
+
+Rajat Gupta
+
+Machine Learning | Deep Learning | Frontend Development
+
+GitHub: https://github.com/rajath-07
