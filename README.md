@@ -31,40 +31,6 @@ The system allows users to upload an image, select a classification model, apply
 
 ---
 
-## Project Architecture
-
-```text
-User Upload
-      │
-      ▼
-Image Preprocessing
-      │
-      ▼
-Classifier Selection
-(MobileNetV2 / WideResNet)
-      │
-      ▼
-Original Prediction
-      │
-      ▼
-Adversarial Attack
-(FGSM / PGD)
-      │
-      ▼
-Attacked Prediction
-      │
-      ▼
-Dual-Pass IDAE Defense
-      │
-      ▼
-Defended Prediction
-      │
-      ▼
-Results Dashboard
-```
-
----
-
 ## Tech Stack
 
 ### Frontend
