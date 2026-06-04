@@ -171,7 +171,7 @@ Response:
 
 ## Author
 
-Rajat Gupta
+Rajath Gupta
 
 Machine Learning | Deep Learning | Frontend Development
 
