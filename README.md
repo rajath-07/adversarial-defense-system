@@ -9,6 +9,7 @@
 📦 Model Weights: https://huggingface.co/rajzzzzzzzz/adversarial-defense-weights
 
 > Note: The backend is hosted on Render Free Tier. The first prediction request may take 30–60 seconds due to cold start.
+
 > Important: For best results, upload images belonging to CIFAR-10 classes only. The system was trained and evaluated on the CIFAR-10 dataset.
 
 Supported Classes:
