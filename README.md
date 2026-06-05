@@ -96,9 +96,11 @@ cd adversarial-defense-system
 ### Backend Setup
 
 ```bash
-cd backend/app
+cd backend
 
 pip install -r requirements.txt
+
+cd backend/app
 
 uvicorn main:app --reload
 ```
