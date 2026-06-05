@@ -26,34 +26,51 @@ class InferencePipeline:
         self.mean = MEAN.to(device)
         self.std = STD.to(device)
 
-        base_dir = Path(__file__).resolve().parent
+        self.base_dir = Path(__file__).resolve().parent
 
-        self.mobilenet = load_mobilenet(
-            base_dir / "weights" / "mobilenet_cifar10.pth",
-            device
-        )
-
-        self.wideresnet = load_wideresnet(
-            base_dir / "weights" / "wideresnet_cifar10.pth",
-            device
-        )
-
-        self.autoencoder = load_autoencoder(
-            base_dir / "weights" / "dual_pass_idae_cifar10.pth",
-            device
-        )
+        # Lazy loading
+        self.mobilenet = None
+        self.wideresnet = None
+        self.autoencoder = None
 
     def get_model(self, model_name):
 
         if model_name.lower() == "mobilenet":
+
+            if self.mobilenet is None:
+
+                self.mobilenet = load_mobilenet(
+                    self.base_dir / "weights" / "mobilenet_cifar10.pth",
+                    self.device
+                )
+
             return self.mobilenet
 
         elif model_name.lower() == "wideresnet":
+
+            if self.wideresnet is None:
+
+                self.wideresnet = load_wideresnet(
+                    self.base_dir / "weights" / "wideresnet_cifar10.pth",
+                    self.device
+                )
+
             return self.wideresnet
 
         raise ValueError(
             f"Unsupported model: {model_name}"
         )
+
+    def get_autoencoder(self):
+
+        if self.autoencoder is None:
+
+            self.autoencoder = load_autoencoder(
+                self.base_dir / "weights" / "dual_pass_idae_cifar10.pth",
+                self.device
+            )
+
+        return self.autoencoder
 
     def predict(self, model, image):
 
@@ -124,8 +141,10 @@ class InferencePipeline:
         model = self.get_model(
             model_name
         )
+
         with torch.no_grad():
-             label = model(image).argmax(dim=1)
+
+            label = model(image).argmax(dim=1)
 
         # Original prediction
         original_pred, original_conf = self.predict(
@@ -147,10 +166,13 @@ class InferencePipeline:
             adv_image
         )
 
+        # Load autoencoder only when needed
+        autoencoder = self.get_autoencoder()
+
         # Dual-pass denoising
         purified_image = dual_pass_denoise(
             adv_image,
-            self.autoencoder,
+            autoencoder,
             self.mean,
             self.std
         )
