@@ -1,3 +1,4 @@
+from download_weights import *
 from fastapi import FastAPI
 from fastapi import UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
