@@ -1,4 +1,10 @@
-# Adversarial Defense System
+# DeepShield: Adversarial Defense System using Dual-Pass IDAE
+
+🚀 Live Demo: https://your-vercel-url.vercel.app
+
+🔗 Backend API: https://adversarial-defense-api.onrender.com
+
+📦 Model Weights: https://huggingface.co/rajzzzzzzzz/adversarial-defense-weights
 
 ## Overview
 
@@ -62,6 +68,12 @@ The system allows users to upload an image, select a classification model, apply
 * FGSM
 * PGD
 
+### Deployment
+
+* Frontend: Vercel
+* Backend: Render
+* Model Hosting: Hugging Face
+* Inference Engine: FastAPI + PyTorch
 ---
 
 ## Example Results
@@ -100,7 +112,7 @@ cd backend
 
 pip install -r requirements.txt
 
-cd backend/app
+cd app
 
 uvicorn main:app --reload
 ```
@@ -161,13 +173,11 @@ Response:
 ## Future Enhancements
 
 * CW (Carlini-Wagner) Attack
-* DeepFool Attack
-* Additional CNN architectures
+* Docker containerization
+* Kubernetes deployment
+* DeepFool integration
 * Explainable AI visualizations
-* Model comparison dashboard
-* Cloud deployment
-* User authentication
-* Experiment history tracking
+* Model robustness benchmarking
 
 ---
 
